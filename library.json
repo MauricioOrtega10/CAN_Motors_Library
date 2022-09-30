@@ -1,0 +1,35 @@
+{
+    "name": "CAN_Motors_Library",
+    "version": "1.15",
+    "description": "",
+    "keywords": "",
+    "repository":
+    {
+      "type": "git",
+      "url": ""
+    },
+    "authors":
+    [
+      {
+        "name": "",
+        "email": "",
+        "maintainer": true
+      }
+    ],
+    "export":
+    {
+        "exclude":
+        [
+            "test/*",
+            "platformio.ini",
+            ".gitignore",
+            ".vscode/*",
+            ".pio"
+        ]
+    },
+    "license": "MIT",
+    "dependencies": {
+    },
+    "frameworks": "arduino",
+    "platforms": "teensy41"
+  }
