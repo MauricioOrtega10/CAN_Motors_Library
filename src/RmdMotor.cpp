@@ -28,6 +28,7 @@
 #define RAD                   0.01745329251f   //(pi/180)grad to rad 
 #define POSITIVE              1.0f
 #define NEGATIVE             -1.0f
+#define POS_CONVER_V3         0.9677419662F // Position value correction for RMD V3 motors (6.0F/6.2F)
 
 //Definition of static constants. 
 const RmdMotor::MotorType RmdMotor::RMD_X6{REDUCTION_6_TO_1, X6_KT, POSITIVE};                  
@@ -35,7 +36,7 @@ const RmdMotor::MotorType RmdMotor::RMD_X8_V1{REDUCTION_6_TO_1, X8_V1_KT, NEGATI
 const RmdMotor::MotorType RmdMotor::RMD_X8_PRO_V1{REDUCTION_6_TO_1, X8_PRO_V1_KT, NEGATIVE};
 //const RmdMotor::MotorType RmdMotor::RMD_X8_V2{REDUCTION_9_TO_1, X8_V2_KT, POSITIVE};
 //const RmdMotor::MotorType RmdMotor::RMD_X8_PRO_V2{REDUCTION_9_TO_1, X8_PRO_V2_KT, POSITIVE};
-const RmdMotor::MotorType RmdMotor::RMD_X8_V3{REDUCTION_1_TO_1, X8_V3_KT, POSITIVE};              //ToDo: Verify direction sign. 
+const RmdMotor::MotorType RmdMotor::RMD_X8_V3{REDUCTION_1_TO_1, X8_V3_KT, NEGATIVE}; 
 const RmdMotor::MotorType RmdMotor::RMD_X8_PRO_V3{REDUCTION_1_TO_1, X8_PRO_V3_KT, POSITIVE};      //ToDo: Verify direction sign.
 const RmdMotor::MotorType RmdMotor::RMD_L5015{REDUCTION_1_TO_1, L5015_KT, NEGATIVE};
 
@@ -277,7 +278,7 @@ bool RmdMotor::m_readMotorResponse()
         case REQUEST_POS_COMMAND:
             if (m_motor_type.KT == X8_V3_KT || m_motor_type.KT == X8_PRO_V3_KT)
             {
-                m_position = ((((response_msg.data[7] << 24) | (response_msg.data[6] << 16) | (response_msg.data[5] << 8) | (response_msg.data[4]))/(m_motor_type.reduction * 100.0f))* RAD) * m_motor_type.DIRECTION_SIGN; //! v3
+                m_position = ((((response_msg.data[7] << 24) | (response_msg.data[6] << 16) | (response_msg.data[5] << 8) | (response_msg.data[4]))/(m_motor_type.reduction * 100.0f))* RAD) * m_motor_type.DIRECTION_SIGN * POS_CONVER_V3; //! v3
             }
             else
             {
