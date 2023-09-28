@@ -16,6 +16,13 @@ bool CanMotor::initialize(const CAN_SPEED can_speed, CAN_CLOCK can_clock)
     #if DEBUG_ENABLED
         Serial.print("Initializing motor: "); Serial.println(m_name);
     #endif
+    if ( m_mcp2515.begin() != true)
+    {
+        #if DEBUG_ENABLED
+            Serial.println("!!!Error initialization  MCP2515 SPI.");
+        #endif
+        return false;
+    }
     if ( m_mcp2515.reset() != MCP2515::ERROR_OK)
     {
         #if DEBUG_ENABLED
