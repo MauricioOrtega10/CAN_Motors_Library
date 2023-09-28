@@ -10,7 +10,7 @@
 
 class CanMotor{
     public:
-        CanMotor(const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_NAME", SPIClass & spi = SPI, const uint32_t _SPI_CLOCK = 10000000);
+        CanMotor(const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_NAME", SPIClass * spi = SPI, const uint32_t _SPI_CLOCK = 10000000);
 
         //Public member functions defined by the base class (this one).
         bool initialize(const CAN_SPEED can_speed = CAN_1000KBPS, CAN_CLOCK can_clock = MCP_16MHZ);
