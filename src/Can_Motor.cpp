@@ -2,9 +2,9 @@
 
 
 
-CanMotor::CanMotor(const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name, SPIClass & spi, const bool doBegin)
+CanMotor::CanMotor(const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name, SPIClass & spi, const uint32_t _SPI_CLOCK)
     : m_position(0), m_velocity(0), m_torque(0), m_name(motor_name), m_offset_from_zero_motor(0), m_interrupt_pin(_INT_PIN),
-      m_is_auto_mode_running(false), m_last_response_time_ms(0), m_is_response_ready(true), m_mcp2515{_CS, spi, doBegin}
+      m_is_auto_mode_running(false), m_last_response_time_ms(0), m_is_response_ready(true), m_mcp2515{_CS, _SPI_CLOCK, spi}
 {
 
 }
