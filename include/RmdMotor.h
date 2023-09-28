@@ -23,7 +23,7 @@ class RmdMotor : public CanMotor{
         static const MotorType RMD_X8_PRO_V3;
         static const MotorType RMD_L5015;
 
-        RmdMotor(const MotorType & motor_type, const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_RMD", SPIClass & spi = SPI, const bool doBegin = true);
+        RmdMotor(const MotorType & motor_type, const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_RMD", SPIClass & spi = SPI, const uint32_t _SPI_CLOCK = 10000000);
 
         //Public member functions that this class defines (overrides from the base):
         bool turnOn() override;

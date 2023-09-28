@@ -26,7 +26,7 @@ class MitMotor : public CanMotor{
         static const MotorType AK_10;
         static const MotorType GIM;
 
-        MitMotor(const MotorType & motor_type, const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_NAME", SPIClass & spi = SPI, const bool doBegin = true);
+        MitMotor(const MotorType & motor_type, const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name = "DEFAULT_NAME", SPIClass & spi = SPI, const uint32_t _SPI_CLOCK = 10000000);
 
         //Public member functions that this class defines (overrides from the base):
         bool turnOn() override;
