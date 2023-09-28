@@ -19,7 +19,7 @@ const float MitMotor::MotorType::KD_MAX = 5.0f;
 
 
 MitMotor::MitMotor(const MotorType & motor_type, const uint8_t _CS, const uint8_t _INT_PIN, const char * motor_name, SPIClass & spi, const uint32_t _SPI_CLOCK)
-    : CanMotor{_CS, _INT_PIN, motor_name, spi, doBegin}, m_motor_type(motor_type)
+    : CanMotor{_CS, _INT_PIN, motor_name, spi, _SPI_CLOCK}, m_motor_type(motor_type)
 {
 }
 
